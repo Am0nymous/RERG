@@ -8,5 +8,15 @@ Step 1: Convert the tensorflow version TAPAS into pytorch
 
 then put it into convert_model/Tapas_model
 
+1.2 run the script convert_tf2_torch.py to get the pytorch version tapas model torch_tapas_model.bin
+
+Altivate Step: fine-tune the tapas model on the MultiNLI corpus
+
+the MultiNLI corpus can be obtained from https://cims.nyu.edu/~sbowman/multinli/, we remove the netural examples and take one epoch steps for fine-tuning.
+
+Step 2: 
+
+
+
 
 
