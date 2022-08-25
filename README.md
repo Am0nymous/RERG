@@ -6,7 +6,7 @@ Step 1: Convert the tensorflow version TAPAS into pytorch
 
 1.1 Download the pre-trained TAPAS model from https://storage.googleapis.com/tapas_models/2020_10_07/tapas_inter_masklm_large.zip
 
-then put it into convert_model/Tapas_model
+then unzip and put it into convert_model/tapas_model
 
 1.2 run the script convert_tf2_torch.py to get the pytorch version tapas model torch_tapas_model.bin
 
