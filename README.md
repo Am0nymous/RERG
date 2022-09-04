@@ -12,7 +12,7 @@ then unzip and put it into convert_model/
 
 the pytorch version tapas model is pytorch_model.bin, which is located at convert_model/tapas_model/
 
-Altivate Step: fine-tune the tapas model on the MultiNLI corpus
+Alternative Step: fine-tune the tapas model on the MultiNLI corpus
 
 the MultiNLI corpus can be obtained from https://cims.nyu.edu/~sbowman/multinli/, we remove the netural examples and take one epoch steps for fine-tuning.
 
