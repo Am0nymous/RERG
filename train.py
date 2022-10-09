@@ -345,10 +345,12 @@ def main():
                 batch = tuple(t.to(device) for t in batch)
                 input_ids, attention_mask, segment_ids, column_ids, row_ids, prev_label_ids, column_ranks, inv_column_ranks, \
                 numeric_relations, label_id, position_ids, adj_matrix, graph_mask, bert_words, bert_maps, word_masks, start_pos, end_pos = batch
+                # drop last one batch
                 if input_ids.size(0) == 1:
                     continue
                 token_type_ids = (segment_ids, column_ids, row_ids, prev_label_ids, column_ranks, \
                                   inv_column_ranks, numeric_relations)
+                # explore
                 flag = 'two'
                 logit, action_loss, entropys, rp_loss = model.forward(input_ids, attention_mask, token_type_ids,
                                                                       position_ids, adj_matrix, graph_mask.float(),
@@ -361,7 +363,7 @@ def main():
                 R = 0.0
                 loss_rl = 0.
                 for i in reversed(range(len(action_loss))):
-                    R = gamma * R + loss * rp_loss[i]
+                    R = gamma * R + loss * rp_loss[i] # use the final step loss for stable training
                     b = torch.sum(action_loss[i] * graph_mask.float(), dim=-1) / torch.sum(graph_mask.float(), dim=-1)
                     loss_rl = loss_rl - b.sum() * R - (0.001 * entropys[i].cuda()).sum()
                 loss_rl = loss_rl / len(action_loss)
